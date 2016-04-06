@@ -1,2 +1,2 @@
 # Ubuntu_config
-basic configure for new ubuntu system
+Basic configuration for new Ubuntu system
