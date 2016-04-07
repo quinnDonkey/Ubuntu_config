@@ -100,16 +100,9 @@ UseDNS no
 service ssh restart
 }
 sed -i.bak '/^session.*motd/s/^/# /' /etc/pam.d/sshd
-echo -n '
-w
-' >/etc/profile.d/quinn.sh
 
-rm -rf /home/para/.ssh
-sudo -u para ssh-keygen -t rsa -f /home/para/.ssh/id_rsa -P ''
-expect -c "
-spawn scp /home/para/.ssh/id_rsa.pub zhangshuai@192.168.1.3:id_rsa.$hostname.pub
-expect yes { send yes\r; exp_continue } Password: { send zs\r }
-expect EOF
+rm -rf /home/$LOGNAME/.ssh
+sudo -u $LOGNAME ssh-keygen -t rsa -f /home/$LOGNAME/.ssh/id_rsa -P ''
 "
 
 ########################################
@@ -118,7 +111,7 @@ show_title "Add users"
 function add_user {
 	local username="$1"
 	local desc="$2"
-	local pass="${3:-para510}"
+	local pass="${3:-password}"
 	local sudo="${4:+sudo,}"
 	id "$username" &>/dev/null || {
 		echo "Adding user: $username ..."
@@ -127,21 +120,8 @@ function add_user {
 	}
 }
 
-add_user zhangshuai	'Zhang Shuai'		'zs'		'sudo'
-add_user quinn		'Dong Qianqun'		'quinn'		'sudo'
-add_user pp		'Jiao Xiaofan'		'pp'		'sudo'
-add_user kingxue	'Liu Xuechen'		'para510'	'sudo'
-add_user ddddzkz	'Zhao Kezhao'		'zkz'		'sudo'
-add_user zhoushen	'Zhou Chenggang'	'para510'	'sudo'
-add_user wyf		'Wang Yifeng'		'para510'	'sudo'
-add_user wd		'Wang Duo'		'para510'	'sudo'
-add_user spikeliu	'Liu Chao'		'para510'	'sudo'
-add_user hth		'Huang Tehui'		'para510'
-add_user wanglei	'Wang Lei'		'para510'
-add_user xuepei		'Xue Pei'		'para510'
-add_user jiabing	'Leng Jiabing'		'para510'
-add_user jsfbetter	'Jin Shengfu'		'para510'
-add_user hadoop		'Hadoop User'		'para510'
+add_user quinn		'Quinn'			'quinn'		'sudo'
+add_user hadoop		'Hadoop User'		'password'
 add_user parallel	'Guest User'		'parallel'
 
 ########################################
@@ -225,7 +205,7 @@ v () {
 alias vperl="v pl 755 + \\"#!\$( which perl ) -w
 
 ############################
-# Created by Butterfly0923 #
+# Created by $LOGNAME
 ############################
 
 use 5.010;
@@ -252,7 +232,7 @@ alias vphp="v php 644 +6 '<!DOCTYPE html PUBLIC \\"-//W3C//DTD XHTML 1.0 Transit
 alias vawk="v awk 755 +8 \\"#!\$( which awk ) -f
 
 ############################
-# Created by Butterfly0923 #
+# Created by $LOGNAME
 ############################
 
 # \$( date +%F\\ %T )
@@ -262,7 +242,7 @@ alias vawk="v awk 755 +8 \\"#!\$( which awk ) -f
 alias vbash="v \\"\\" 755 +8 \\"#!\$( which bash )
 
 ############################
-# Created by Butterfly0923 #
+# Created by $LOGNAME
 ############################
 
 # \$( date +%F\\ %T )
