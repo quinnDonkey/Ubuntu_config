@@ -103,7 +103,6 @@ sed -i.bak '/^session.*motd/s/^/# /' /etc/pam.d/sshd
 
 rm -rf /home/$LOGNAME/.ssh
 sudo -u $LOGNAME ssh-keygen -t rsa -f /home/$LOGNAME/.ssh/id_rsa -P ''
-"
 
 ########################################
 show_title "Add users"

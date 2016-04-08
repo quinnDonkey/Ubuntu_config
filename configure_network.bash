@@ -26,7 +26,8 @@ grep -q 'eth0' /etc/network/interfaces || {
 service networking restart
 }
 
-show_title "configure dnsservier"
+#if using dhcp, it is no need to configure dnsserver
+show_title "configure dnsserver"
 
 grep -q 'nameserver' /etc/resolv.conf || {
 {
