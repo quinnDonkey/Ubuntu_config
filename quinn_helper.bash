@@ -30,7 +30,7 @@ service networking restart
 }
 
 ########################################
-# adapt the sources to the fit version of ubuntu
+# adapt the sources to the fit version of ubuntu, the default version is for 14.04
 show_title "Configure apt-get for Ubuntu 14.04"
 cat <<EOF >/etc/apt/sources.list
 deb http://ftp.nankai.edu.cn/ubuntu/ trusty main multiverse restricted universe
@@ -56,6 +56,7 @@ apt-get install -y rdate
 rdate -n ntp.sjtu.edu.cn
 
 ########################################
+# other softwares could be added here
 show_title "Install softwares"
 apt-get install -y g++ gcc gfortran make build-essential binutils vim expect sl sysvbanner gawk sysv-rc-conf beep icewm tightvncserver xterm flex bison openvpn cpanminus unzip unrar lm-sensors gftp x11-apps pm-utils bsdgames lftp ethtool
 
@@ -73,7 +74,9 @@ echo -n '
 " Added by quinn
 syntax on
 set hlsearch
-set incsearch
+set incsearc
+set autoindent
+set tabstop=4
 filetype indent on
 ' >> /etc/vim/vimrc
 }
