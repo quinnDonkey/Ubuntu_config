@@ -74,7 +74,7 @@ echo -n '
 " Added by quinn
 syntax on
 set hlsearch
-set incsearc
+set incsearch
 set autoindent
 set tabstop=4
 filetype indent on
