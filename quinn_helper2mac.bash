@@ -44,15 +44,14 @@ filetype indent on
 show_title "add aliases and fuction"
 
 grep -q 'alias la' ~/.bash_profile || {
-echo -n '
+echo -n "
 # add aliases
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias /='cd /'
 alias dh='df -h'
 alias ll='ls -l'
 alias la='ls -a'
 alias rr='rm -r'
-' >> ~/.bash_profile
+" >> ~/.bash_profile
 }
